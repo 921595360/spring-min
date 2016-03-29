@@ -113,6 +113,44 @@
 			<build>
 				<plugins>
 					<plugin>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.1</version>
+						<configuration>
+							<attach>true</attach>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>compile</phase>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					
+					<plugin>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.9.1</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<phase>package</phase>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+								<configuration>
+									<encoding>UTF-8</encoding>
+								</configuration>
+							</execution>
+						</executions>
+						<configuration>
+							<encoding>UTF-8</encoding>
+						</configuration>
+					</plugin>
+					
+					
+				
+					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
 						<version>1.6.3</version>
@@ -123,6 +161,10 @@
 							<autoReleaseAfterClose>true</autoReleaseAfterClose>
 						</configuration>
 					</plugin>
+					
+										
+
+										
 
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -150,42 +192,7 @@
 						</executions>
 					</plugin>
 
-					<plugin>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>2.9.1</version>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<phase>install</phase>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-								<configuration>
-									<encoding>UTF-8</encoding>
-								</configuration>
-							</execution>
-						</executions>
-						<configuration>
-							<encoding>UTF-8</encoding>
-						</configuration>
-					</plugin>
-
-					<plugin>
-						<artifactId>maven-source-plugin</artifactId>
-						<version>2.1</version>
-						<configuration>
-							<attach>true</attach>
-						</configuration>
-						<executions>
-							<execution>
-								<phase>compile</phase>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
+					
 
 				</plugins>
 			</build>
