@@ -87,6 +87,16 @@
 	<profiles>
 		<profile>
 			<id>release</id>
+			
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<gpg.executable>gpg2</gpg.executable>
+				<gpg.passphrase>keepquiet</gpg.passphrase>
+			</properties>
+			
+			
 			<distributionManagement>
 				<snapshotRepository>
 					<id>ossrh</id>
@@ -180,6 +190,8 @@
 				</plugins>
 			</build>
 
+			
+			
 		</profile>
 
 
