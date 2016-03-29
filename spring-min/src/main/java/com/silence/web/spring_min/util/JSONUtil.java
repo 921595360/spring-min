@@ -23,13 +23,6 @@ import org.json.JSONObject;
  */
 public class JSONUtil {
 
-	 /**
-     * 将Javabean转换为Map
-     * 
-     * @param javaBean
-     *            javaBean
-     * @return Map对象
-     */
     public static Map toMap(Object javaBean) {
 
         Map result = new HashMap();
@@ -60,14 +53,6 @@ public class JSONUtil {
 
     }
 
-    /**
-     * 将Json对象转换成Map
-     * 
-     * @param jsonObject
-     *            json对象
-     * @return Map对象
-     * @throws JSONException
-     */
     public static Map toMap(String jsonString) throws JSONException {
 
         JSONObject jsonObject = new JSONObject(jsonString);
@@ -88,27 +73,12 @@ public class JSONUtil {
 
     }
 
-    /**
-     * 将JavaBean转换成JSONObject（通过Map中转）
-     * 
-     * @param bean
-     *            javaBean
-     * @return json对象
-     */
     public static JSONObject toJSON(Object bean) {
 
         return new JSONObject(toMap(bean));
 
     }
 
-    /**
-     * 将Map转换成Javabean
-     * 
-     * @param javabean
-     *            javaBean
-     * @param data
-     *            Map数据
-     */
     public static Object toJavaBean(Object javabean, Map data) {
 
         Method[] methods = javabean.getClass().getDeclaredMethods();
@@ -136,16 +106,6 @@ public class JSONUtil {
 
     }
 
-    /**
-     * JSONObject到JavaBean
-     * 
-     * @param bean
-     *            javaBean
-     * @return json对象
-     * @throws ParseException
-     *             json解析异常
-     * @throws JSONException
-     */
     public static void toJavaBean(Object javabean, String jsonString)
             throws ParseException, JSONException {
 

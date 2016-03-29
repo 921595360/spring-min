@@ -56,10 +56,9 @@ public class DispatcherServlet extends HttpServlet {
 	/**
 	 * 
 	 * mapping(映射请求)  
-	 * @param request
-	 * @param response   
+	 * @param request request对象
+	 * @param response response对象
 	 *void  
-	 * @exception   
 	 * @since  1.0.0
 	 */
 	@SuppressWarnings("null")

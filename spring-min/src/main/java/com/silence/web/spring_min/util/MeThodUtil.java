@@ -20,16 +20,6 @@ import org.apache.commons.jexl2.MapContext;
  */
 public class MeThodUtil {
 
-	/**
-	 * 
-	 * invokeMethod(执行字符串java代码 )  
-	 * @param jexlExp 
-	 * @param params
-	 * @return   
-	 *Object  
-	 * @exception   
-	 * @since  1.0.0
-	 */
 	public static Object invokeMethod(String jexlExp,Map<String,Object> params){  
         JexlEngine jexl=new JexlEngine();  
         Expression e = jexl.createExpression(jexlExp);  

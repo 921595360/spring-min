@@ -98,7 +98,6 @@ public class ContextLoaderListener implements ServletContextListener  {
 	 * 
 	 * inject(依赖注入)  
 	 *void  
-	 * @exception   
 	 * @since  1.0.0
 	 */
 	public void inject(){

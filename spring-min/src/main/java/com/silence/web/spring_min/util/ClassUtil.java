@@ -27,17 +27,7 @@ import java.util.jar.JarFile;
 public class ClassUtil {
 
 	
-	/**
-	 * 
-	 * getClasses(获取指定包下的所有类)  
-	 * @param packageName 包名
-	 * @param excludePackages 不包含的包
-	 * @param excludeClasses 不包含的类
-	 * @return   
-	 *List<Class<?>>  
-	 * @exception   
-	 * @since  1.0.0
-	 */
+
 	public static List<Class<?>> getClasses(String packageName,String [] excludePackages,String [] excludeClasses){
 		 //第一个class类的集合  
         List<Class<?>> classes = new ArrayList<Class<?>>();  
