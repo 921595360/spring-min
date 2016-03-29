@@ -22,14 +22,14 @@
 			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
 		</license>
 	</licenses>
-	
+
 	<developers>
 		<developer>
 			<name>silence</name>
 			<email>921595360@qq.com</email>
 		</developer>
 	</developers>
-	
+
 	<scm>
 		<connection>scm:git@github.com:921595360/spring-min.git</connection>
 		<developerConnection>scm:git@github.com:921595360/spring-min.git</developerConnection>
@@ -83,7 +83,7 @@
 
 
 	</dependencies>
-	
+
 	<profiles>
 		<profile>
 			<id>release</id>
@@ -92,14 +92,14 @@
 					<id>oss</id>
 					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
 				</snapshotRepository>
-				
+
 				<repository>
 					<id>oss</id>
 					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 				</repository>
-				
+
 			</distributionManagement>
-			
+
 		</profile>
 	</profiles>
 
@@ -119,6 +119,20 @@
 					<compilerArguments>
 					</compilerArguments>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 
