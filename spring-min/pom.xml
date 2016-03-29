@@ -4,7 +4,7 @@
 
   <groupId>com.github.9215095360</groupId>
   <artifactId>spring-min</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.RELEASE</version>
   <packaging>jar</packaging>
 
   <name>spring</name>
