@@ -83,7 +83,15 @@ public class ContextLoaderListener implements ServletContextListener  {
 					} catch (InstantiationException | IllegalAccessException e) {
 						e.printStackTrace();
 					}
-					break;		
+					break;	
+				
+				case "com.silence.web.spring_min.anotation.Repository":
+					try {
+						BeanFactory.getInstance().setBean(classes.get(i).newInstance());
+					} catch (InstantiationException | IllegalAccessException e) {
+						e.printStackTrace();
+					}
+					break;
 
 				default:
 					break;

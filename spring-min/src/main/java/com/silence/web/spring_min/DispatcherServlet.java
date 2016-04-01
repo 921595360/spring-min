@@ -1,10 +1,12 @@
 package com.silence.web.spring_min;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.AnnotatedType;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -12,10 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.jexl2.Expression;
-import org.apache.commons.jexl2.JexlContext;
-import org.apache.commons.jexl2.JexlEngine;
-import org.apache.commons.jexl2.MapContext;
 import org.apache.log4j.Logger;
 
 import com.silence.web.spring_min.bean.factory.BeanFactory;
@@ -58,7 +56,6 @@ public class DispatcherServlet extends HttpServlet {
 	 * mapping(映射请求)  
 	 * @param request request对象
 	 * @param response response对象
-	 *void  
 	 * @since  1.0.0
 	 */
 	@SuppressWarnings("null")
@@ -68,6 +65,7 @@ public class DispatcherServlet extends HttpServlet {
 		Map<String, Method> requestMappings = ContextLoaderListener.getApplicationContext().getRequestMappings();
 		Method method = requestMappings.get(path);
 		
+		setEncoding(request, response);
 			try {
 				if(method==null) return;
 				AnnotatedType[] annotatedParameterTypes = method.getAnnotatedParameterTypes();
@@ -84,12 +82,19 @@ public class DispatcherServlet extends HttpServlet {
 				String[] parameterNames = ParameterNameUtils.getMethodParameterNames(method);
 				
 				for (int i = 0; i < parameters.length; i++) {
-					System.out.println(parameters[i].getType().getName());
 					
 					Object value=null;
 					
 					switch (parameters[i].getType().getName()) {
 					
+					case "javax.servlet.http.HttpServletRequest":
+						value=request;
+						break;
+						
+					case "javax.servlet.http.HttpServletResponse":
+						value=response;
+						break;
+						
 					case "java.lang.String":
 						value=request.getParameter(parameterNames[i]);
 						break;
@@ -121,9 +126,7 @@ public class DispatcherServlet extends HttpServlet {
 					default:
 						String valueString=request.getParameter(parameterNames[i]);
 						value = parameters[i].getType().newInstance();
-						
 						value=JSONUtil.toJavaBean(value, JSONUtil.toMap(valueString));
-						System.out.println(value);
 						break;
 					}
 					
@@ -160,7 +163,23 @@ public class DispatcherServlet extends HttpServlet {
 					
 				case "java.lang.Double":
 					break;
-
+					
+				case "java.util.ArrayList":
+					String resultStr="[";
+					List<Object> tmp=(List<Object>) result;
+					for (int i=0;i<tmp.size();i++) {
+						resultStr+=JSONUtil.toJSON(tmp.get(i)).toString();
+						if(i!=tmp.size()-1){
+							resultStr+=",";
+						}
+					}
+					
+					resultStr+="]";
+					
+					result=resultStr;
+					
+					break;	
+					
 				default:
 					isJson=true;
 					break;
@@ -174,5 +193,20 @@ public class DispatcherServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+	}
+	
+	/**
+	 * 
+	 * setEncoding (设置编码格式,目前未处理url中文乱码问题)  
+	 * @param request request对象
+	 * @param response response对象
+	 */
+	public void setEncoding(HttpServletRequest request,HttpServletResponse response){
+		try {
+			request.setCharacterEncoding("utf-8");
+			response.setContentType("text/html;charset=utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 	}
 }

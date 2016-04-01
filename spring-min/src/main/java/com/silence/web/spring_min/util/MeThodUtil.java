@@ -27,9 +27,8 @@ public class MeThodUtil {
         for(String key:params.keySet()){  
             jc.set(key, params.get(key));  
         }  
-        if(null==e.evaluate(jc)){  
-            return "";  
-        }  
-        return e.evaluate(jc);  
+        Object rtn = e.evaluate(jc);
+       
+        return rtn!=null?rtn:"";  
     }  
 }
