@@ -51,7 +51,7 @@ public class DBUtil {
 			
 			int columnCount = statement.getMetaData().getColumnCount();
 			
-			ResultSet resultSet = statement.executeQuery(sql);
+			ResultSet resultSet = statement.executeQuery();
 			
 			List<Map<String,Object>> result=new ArrayList<>();
 			while(resultSet.next()){
