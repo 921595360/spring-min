@@ -34,7 +34,7 @@ public class DBUtil {
 				statement.setObject(i+1, params[i]);
 			}
 		}
-		statement.execute(sql);
+		statement.execute();
 	}
 	
 	public static List<Map<String, Object>> executeQuery(String sql,Object... params ){
@@ -85,9 +85,11 @@ public class DBUtil {
 				}
 			}
 			
-			int columnCount = statement.getMetaData().getColumnCount();
 			
-			ResultSet resultSet = statement.executeQuery(sql);
+			
+			ResultSet resultSet = statement.executeQuery();
+			
+			int columnCount = statement.getMetaData().getColumnCount();
 			
 			Map<String,Object> result=new HashMap<>();
 			
